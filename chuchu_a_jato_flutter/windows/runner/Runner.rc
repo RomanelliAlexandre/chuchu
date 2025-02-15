@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "chuchu_a_jato" "\0"
+            VALUE "CompanyName", "br.edu.ifes.chuchu_a_jato_flutter" "\0"
+            VALUE "FileDescription", "chuchu_a_jato_flutter" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "chuchu_a_jato" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "chuchu_a_jato.exe" "\0"
-            VALUE "ProductName", "chuchu_a_jato" "\0"
+            VALUE "InternalName", "chuchu_a_jato_flutter" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2025 br.edu.ifes.chuchu_a_jato_flutter. All rights reserved." "\0"
+            VALUE "OriginalFilename", "chuchu_a_jato_flutter.exe" "\0"
+            VALUE "ProductName", "chuchu_a_jato_flutter" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

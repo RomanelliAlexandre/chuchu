@@ -1,6 +1,6 @@
 {
-    "name": "chuchu_a_jato",
-    "short_name": "chuchu_a_jato",
+    "name": "chuchu_a_jato_flutter",
+    "short_name": "chuchu_a_jato_flutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

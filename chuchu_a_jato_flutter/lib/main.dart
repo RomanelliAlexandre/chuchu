@@ -1,125 +1,322 @@
+import 'src/cadastrar_usuario_page.dart';
+import 'src/efetuar_login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChuchuAJatoRestauranteApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ChuchuAJatoRestauranteApp extends StatelessWidget {
+  const ChuchuAJatoRestauranteApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+    return ChuchuHomeScreen();
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class ChuchuHomeScreen extends StatefulWidget {
+  const ChuchuHomeScreen({super.key});
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+  ChuchuHomeScreenState createHomeScreen() {
+    return ChuchuHomeScreenState();
+  }
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<ChuchuHomeScreen> createState() => ChuchuHomeScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
+class ChuchuHomeScreenState extends State<ChuchuHomeScreen> {
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+    TextStyle? ts = TextStyle(
+      fontFamily: 'Roboto',
+      fontWeight: FontWeight.w700,
+      fontSize: 17,
+      color: Color.fromARGB(255, 82, 39, 130),
+    );
+    ts.apply(
+      decorationStyle: TextDecorationStyle.solid,
+    );
+
+    TextStyle? titleTextStyle = Theme.of(context).textTheme.titleMedium;
+    if (titleTextStyle != null) {
+      titleTextStyle.apply(
+        fontStyle: ts.fontStyle,
+      );
+      // titleTextStyle.apply(fontStyle: FontStyle.(
+      //     fontWeight: FontWeight.bold));
+    }
+    TextStyle? appBarButtonTextStyle = Theme.of(context).textTheme.titleMedium;
+
+    var iconLogin = Icon(
+      Icons.login,
+      color: Colors.blueGrey,
+      size: 24.0,
+    );
+
+    var iconCreateUser = Icon(
+      Icons.account_box,
+      color: Colors.blueGrey,
+      size: 24.0,
+    );
+
+    var iconExit = Icon(
+      Icons.logout,
+      color: Colors.blueGrey,
+      size: 24.0,
+    );
+
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        //navigatorKey: NavigationService.navigatorKey,
+        // a construção a seguir, com Builder no topo, foi usada
+        // para ter um BuildContext que contenha um Navigator.
+        initialRoute: '/',
+        routes: {
+          '/cadastrarusuario': (context) => Builder(
+                builder: (context) => const CadastrarUsuarioPage(),
+              ),
+        },
+        home: Builder(
+          builder: (context) => Center(
+            child: Scaffold(
+              backgroundColor: Color.fromARGB(255, 255, 255, 255),
+              resizeToAvoidBottomInset: true,
+              appBar: AppBar(
+                backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+                title: Text(
+                  'Chuchu-a-Jato App',
+                  style: ts,
+                  textDirection: TextDirection.ltr,
+                ),
+              ),
+              body: Container(
+                width: 1140,
+                height: 680,
+                alignment: Alignment.topCenter,
+                padding: EdgeInsets.all(10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  verticalDirection: VerticalDirection.down,
+                  children: [
+                    Image.asset(
+                      'assets/image/chuchuajato.png',
+                      scale: 0.7,
+                      width: 613,
+                      height: 300,
+                      // alignment: AlignmentDirectional.center,
+                    ),
+                    Container(
+                      width: 1100,
+                      height: 90,
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                      child: SizedBox(
+                        width: 1000,
+                        height: 90,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                width: 900,
+                                height: 70,
+                                padding: EdgeInsets.fromLTRB(50, 10, 50, 10),
+                                child: TextField(
+                                  expands: false,
+                                  minLines: 1,
+                                  maxLines: 1,
+                                  obscureText: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'E-mail',
+                                    hintText: 'Digite seu endereço de e-mail',
+                                    hintStyle: TextStyle(color: Color.fromARGB(255, 150, 150, 150)),
+                                    icon: Icon(Icons.email_rounded),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5.0)),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 1100,
+                      height: 70,
+                      alignment: Alignment.topCenter,
+                      //padding: EdgeInsets.all(20.0),
+                      child: SizedBox(
+                        width: 1000,
+                        height: 70,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                width: 900,
+                                height: 70,
+                                padding: EdgeInsets.fromLTRB(50, 8, 50, 8),
+                                child: TextField(
+                                  expands: false,
+                                  minLines: 1,
+                                  maxLines: 1,
+                                  obscureText: true,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Senha',
+                                    hintText: 'Digite sua senha de acesso',
+                                    hintStyle: TextStyle(color: Color.fromARGB(255, 150, 150, 150)),
+                                    icon: Icon(Icons.password),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(5.0)),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 1100.0,
+                      height: 60.0,
+                      alignment: Alignment.center,
+                      //padding: EdgeInsets.fromLTRB(0, 0, 0, 0)5
+                      child: SizedBox(
+                        width: 1000.0,
+                        height: 50.0,
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 90.0,
+                              height: 50.0,
+                            ),
+                            //Expanded(
+                            Container(
+                              width: 300,
+                              height: 50.0,
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  elevation: 5.0,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0)),
+                                  alignment: Alignment.center,
+                                  fixedSize: Size(300.0, 50),
+                                  backgroundColor:
+                                      Color.fromARGB(200, 100, 0, 255),
+                                ),
+                                child: Text(
+                                  'Login',
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 30,
+                            ),
+                            Text(
+                              'Não tem uma conta de acesso?',
+                              style: TextStyle(fontSize: 18.0),
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, '/cadastrarusuario');
+                              },
+                              child: Text(
+                                'Crie sua conta!',
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 0, 0, 255),
+                                  fontSize: 18.0,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                // SizedBox(
+                //   height: 200,
+                //   width: 1000,
+                //   child: Row(
+                //     children: [
+                //       Spacer(),
+                //       TextField(
+                //         decoration: const InputDecoration(
+                //           labelText: 'Senha',
+                //           hintText: 'Digite a sua senha',
+                //           icon: Icon(Icons.email_outlined),
+                //           border: OutlineInputBorder(
+                //               borderRadius:
+                //                   BorderRadius.all(Radius.circular(5.0)),
+                //               gapPadding: 15),
+                //         ),
+                //       )
+                //     ],
+                //   ),
+                // ),
+                // Container(
+                //   height: 30,
+                //   width: 300,
+                //   padding: EdgeInsets.only(top: 5),
+                //   child: Center(
+                //     child: Row(
+                //       children: [
+                //         Spacer(),
+                //         Text(
+                //           'Não tem uma conta? ',
+                //         ),
+                //         InkWell(
+                //           onTap: () {
+                //             Navigator.pushNamed(context, '/cadastrarusuario');
+                //           },
+                //           child: Text(
+                //             'Crie sua conta',
+                //             style: TextStyle(
+                //                 color: Color.fromARGB(255, 0, 0, 255)),
+                //           ),
+                //         ),
+                //         Spacer(),
+                //       ],
+                //     ),
+                //   ),
+                // ),
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+          ),
+        ));
+  }
+
+  void _abrirEfetuarLoginPage(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => EfetuarLoginPage()),
+    );
+  }
+
+  void _abrirCadastrarUsuario(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CadastrarUsuarioPage()),
     );
   }
 }
+
+class RouteToCadastrarUsuario {}

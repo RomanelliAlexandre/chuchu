@@ -1,4 +1,4 @@
-# chuchu_a_jato
+# chuchu_a_jato_flutter
 
 A new Flutter project.
 
