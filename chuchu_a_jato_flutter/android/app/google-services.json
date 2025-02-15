@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "267198205592",
+    "project_id": "chuchu-a-jato",
+    "storage_bucket": "chuchu-a-jato.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267198205592:android:78b5ae3630aff529a50aed",
+        "android_client_info": {
+          "package_name": "com.example.chuchu_a_jato"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtrhqgzjszea7k4qrYHBJwrOSJ2w8AovE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
